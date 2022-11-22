@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Produkt-dodaj</title>
+</head>
+<body>
+<form action="/addProduct" method="post" th:object="${product}">
+  <h1>Dodaj produkt:</h1>
+  <input type="text" name="name" placeholder="nazwa" th:field="*{name}"/>
+  <input type="number" step="0.01" name="price" placeholder="cena" th:field="*{price}"/>
+  <select id="category">
+    <option th:each="category:${categories}" th:text="${category.getDescription()}" th:value="${category}" th:field="*{category}">
+  </select>
+  <button type="submit">Dodaj</button>
+</form>
+</body>
+</html>
