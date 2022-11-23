@@ -5,25 +5,19 @@
     <title>Produkt-dodaj</title>
 </head>
 <body>
-<form action="/addProduct" method="post" th:object="${product}">
-    <h1>Dodaj produkt:</h1>
-<!--    <div>-->
+    <form action="/addProduct" method="post" th:object="${product}">
+        <h1>Dodaj produkt:</h1>
         <label for="inputName" class="form-label">Nazwa</label>
         <input type="text" id="inputName" name="name" required placeholder="nazwa" th:field="*{name}"/>
-<!--    </div>-->
-<!--    <div>-->
         <label for="inputPrice" class="form-label">Cena</label>
         <input type="number" id="inputPrice" step="0.01" name="price" min="0" placeholder="cena" th:field="*{price}"/>
-<!--    </div>-->
-<!--    <div>-->
         <label for="inputCategory" class="form-label">Kategoria</label>
         <select id="inputCategory" th:field="*{category}">
             <option th:each="catVal:${catValues}" th:text="${catVal.getDescription()}" th:value="${catVal}">
         </select>
-<!--    </div>-->
-    <button type="submit">Dodaj</button>
-    <br><br>
-    <a th:text="|powrót do strony głównej|" th:href="@{'/'}"></a>
-</form>
+        <button type="submit">Dodaj</button>
+        <br><br>
+        <a th:text="|powrót do strony głównej|" th:href="@{'/'}"></a>
+    </form>
 </body>
 </html>

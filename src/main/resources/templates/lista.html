@@ -10,28 +10,26 @@
     </style>
 </head>
 <body>
-<h1>Lista produktów</h1>
-<table>
-    <thead>
-    <tr>
-        <td>Nazwa</td>
-        <td>Cena</td>
-        <td>Kategoria</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="product: ${products}">
-        <td th:text="${product.name}"></td>
-        <td th:text="${#numbers.formatDecimal(product.price, 1, 2)}"></td>
-        <td th:text="${product.getCategory().getDescription()}"></td>
-    </tr>
-    </tbody>
-    /
-</table>
-<!--    <label th:text="|Suma cen: ${pricesSum} zł|"></label>-->
-<br>
-<label th:text="|Suma cen: ${#numbers.formatDecimal(pricesSum, 1, 2)} zł|"></label>
-<br><br>
-<a th:text="|powrót do strony głównej|" th:href="@{'/'}"></a>
+    <h1>Lista produktów</h1>
+    <table>
+        <thead>
+        <tr>
+            <td>Nazwa</td>
+            <td>Cena</td>
+            <td>Kategoria</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product: ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${#numbers.formatDecimal(product.price, 1, 2)}"></td>
+            <td th:text="${product.getCategory().getDescription()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <label th:text="|Suma cen: ${#numbers.formatDecimal(pricesSum, 1, 2)} zł|"></label>
+    <br><br>
+    <a th:text="|powrót do strony głównej|" th:href="@{'/'}"></a>
 </body>
 </html>

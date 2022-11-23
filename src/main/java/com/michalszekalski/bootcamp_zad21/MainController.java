@@ -51,9 +51,6 @@ public class MainController {
 
     @PostMapping("/addProduct")
     public String addProduct(Product product) {
-        System.out.println(product.getName());
-        System.out.println(product.getPrice());
-        System.out.println(product.getCategory());
         productsRepo.add(product);
         return "redirect:/lista";
     }
