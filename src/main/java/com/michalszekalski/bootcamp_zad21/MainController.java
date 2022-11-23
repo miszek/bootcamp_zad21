@@ -10,28 +10,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
-    private ProductsRepo productsRepo;
-    private Category[] catValues = Category.values();
-
+    private final ProductsRepo productsRepo;
+    private final Category[] catValues = Category.values();
 
     public MainController(ProductsRepo productsRepo) {
         this.productsRepo = productsRepo;
     }
 
     @RequestMapping("/")
-    public String mainPage (Model model) {
+    public String mainPage(Model model) {
         model.addAttribute("categories", catValues);
         return "index";
     }
 
     @GetMapping("/lista")
-    public String listGet(@RequestParam (name = "kategoria", required = false) String categoryStr, Model model) {
+    public String listGet(@RequestParam(name = "kategoria", required = false) String categoryStr, Model model) {
 
         if (categoryStr == null) {
             model.addAttribute("products", productsRepo.getAll());
             model.addAttribute("pricesSum", productsRepo.pricesSumAllProducts());
         } else {
-            Category category = null;
+            Category category;
             try {
                 category = Category.valueOf(categoryStr);
             } catch (IllegalArgumentException e) {
@@ -45,18 +44,17 @@ public class MainController {
 
     @RequestMapping("/add")
     public String addProductForm(Model model) {
-        model.addAttribute("categories", catValues);
+        model.addAttribute("catValues", catValues);
         model.addAttribute("product", new Product());
         return "add";
     }
 
     @PostMapping("/addProduct")
-    public String addProduct (Product product) {
+    public String addProduct(Product product) {
         System.out.println(product.getName());
         System.out.println(product.getPrice());
         System.out.println(product.getCategory());
         productsRepo.add(product);
         return "redirect:/lista";
     }
-
 }

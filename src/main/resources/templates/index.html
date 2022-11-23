@@ -5,19 +5,18 @@
     <title>Produkty</title>
 </head>
 <body>
+    <h1>Produkty</h1>
     <ul>
         <li>
             <a th:text="|wyświetl wszystkie produkty|" th:href="@{'lista'}"></a>
         </li>
         <li th:each="category:${categories}">
-            <a th:text="|wyświetl produkty z kategorii ${category.getDescription()}|" th:href="@{'lista?kategoria=' + ${category}}"></a>
+            <a th:text="|wyświetl produkty z kategorii ${category.getDescription()}|"
+               th:href="@{'lista?kategoria=' + ${category}}"></a>
         </li>
         <li>
             <a th:text="|dodaj produkt|" th:href="@{'add'}"></a>
         </li>
     </ul>
-
-
-
 </body>
 </html>
